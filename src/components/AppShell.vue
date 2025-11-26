@@ -8,7 +8,7 @@
         </div>
         <div class="flex items-center gap-2">
           <span class="badge badge-primary badge-outline">۶ مرحله</span>
-          <span class="badge badge-secondary">جریان راهنما</span>
+          <span class="badge badge-success">جریان راهنما</span>
         </div>
       </header>
 
