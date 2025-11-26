@@ -1,8 +1,16 @@
 <template>
   <div class="card bg-base-100 border border-base-200 shadow-md">
     <div class="card-body p-4 space-y-3">
-      <div class="rounded-xl bg-base-200 h-40 flex items-center justify-center text-lg font-semibold">
-        <span>ویدئوی شماره {{ videoNumber }}</span>
+      <div class="rounded-xl bg-base-200 overflow-hidden border border-base-300">
+        <video
+          class="w-full aspect-video bg-black"
+          :src="videoSrc"
+          :aria-label="`ویدئوی شماره ${videoNumber}`"
+          controls
+          playsinline
+        >
+          مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+        </video>
       </div>
       <p class="leading-relaxed text-base-content/80">{{ text }}</p>
       <slot />
@@ -11,6 +19,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   videoNumber: {
     type: [Number, String],
@@ -21,4 +31,6 @@ const props = defineProps({
     default: '',
   },
 })
+
+const videoSrc = computed(() => `/videos/${props.videoNumber}.mp4`)
 </script>
