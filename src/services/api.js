@@ -8,7 +8,7 @@ export async function sendOtp(mobile) {
     throw new Error('system-error')
   }
 
-  const code = Math.floor(10000 + Math.random() * 90000).toString()
+  const code = '12345'
   return code
 }
 
