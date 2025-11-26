@@ -45,6 +45,7 @@ const message = computed(() => {
 })
 
 const videoNumber = computed(() => {
+  if (props.errorType === 'timeout') return 10
   if (props.errorType === 'mismatch') return 7
   return 'خطا'
 })
