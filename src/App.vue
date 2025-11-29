@@ -174,21 +174,39 @@ function handleRestart() {
 </script>
 
 <template>
-  <AppShell
-    :current-step-number="currentStepNumber"
-    :total-steps="stepsOrder.length"
-    :timer-remaining="flowState.timerRemaining"
-  >
-    <Transition name="fade" mode="out-in">
-      <component :is="currentComponent" :key="flowState.currentStep" v-bind="componentBindings" />
-    </Transition>
-  </AppShell>
+  <div class="relative min-h-screen overflow-hidden">
+    <!-- Full-screen background video -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="h-full w-full object-cover pointer-events-none"
+      >
+        <source src="/videos/10.mp4" type="video/mp4" />
+        مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+      </video>
+    </div>
 
-  <ErrorOverlay
-    :active="Boolean(flowState.errorType)"
-    :error-type="flowState.errorType"
-    @resolve="resolveError"
-  />
+    <div class="relative z-10 flex min-h-screen items-center justify-center px-4 py-6">
+      <AppShell
+        :current-step-number="currentStepNumber"
+        :total-steps="stepsOrder.length"
+        :timer-remaining="flowState.timerRemaining"
+      >
+        <Transition name="fade" mode="out-in">
+          <component :is="currentComponent" :key="flowState.currentStep" v-bind="componentBindings" />
+        </Transition>
+      </AppShell>
+    </div>
+
+    <ErrorOverlay
+      :active="Boolean(flowState.errorType)"
+      :error-type="flowState.errorType"
+      @resolve="resolveError"
+    />
+  </div>
 </template>
 
 <style scoped>
