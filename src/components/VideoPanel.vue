@@ -6,7 +6,6 @@
       :src="videoSrc"
       :aria-label="`ویدئوی شماره ${videoNumber}`"
       autoplay
-      muted
       playsinline
       loop
     >
