@@ -2,7 +2,7 @@
   <div class="relative min-h-screen text-base-content">
     <video
       ref="videoEl"
-      class="fixed inset-0 h-full w-full object-cover"
+      class="fixed inset-0 h-full w-full object-contain object-center bg-black"
       :src="videoSrc"
       :aria-label="`ویدئوی شماره ${videoNumber}`"
       autoplay
