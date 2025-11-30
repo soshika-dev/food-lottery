@@ -1,10 +1,10 @@
 <template>
-  <div class="space-y-4">
-    <VideoPanel
-      video-number="5"
-      text="آیا کد پنج رقمی را به درستی دریافت کردم؟"
-    >
-      <div class="stats shadow mt-4 w-full">
+  <VideoPanel
+    video-number="5"
+    text="آیا کد پنج رقمی را به درستی دریافت کردم؟"
+  >
+    <div class="space-y-3">
+      <div class="stats shadow w-full">
         <div class="stat">
           <div class="stat-title">شماره موبایل</div>
           <div class="stat-value text-lg">{{ mobile }}</div>
@@ -14,21 +14,21 @@
           <div class="stat-value text-lg">{{ otp }}</div>
         </div>
       </div>
-    </VideoPanel>
-    <div class="flex justify-between gap-3">
-      <button class="btn btn-outline" @click="$emit('retry')" :disabled="processing">
-        خیر
-      </button>
-      <button
-        class="btn btn-primary"
-        @click="$emit('confirm')"
-        :disabled="!otpValid || processing"
-      >
-        <span v-if="processing" class="loading loading-spinner"></span>
-        <span v-else>بله</span>
-      </button>
+      <div class="flex justify-between gap-3">
+        <button class="btn btn-outline" @click="$emit('retry')" :disabled="processing">
+          خیر
+        </button>
+        <button
+          class="btn btn-primary"
+          @click="$emit('confirm')"
+          :disabled="!otpValid || processing"
+        >
+          <span v-if="processing" class="loading loading-spinner"></span>
+          <span v-else>بله</span>
+        </button>
+      </div>
     </div>
-  </div>
+  </VideoPanel>
 </template>
 
 <script setup>

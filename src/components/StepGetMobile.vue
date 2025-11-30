@@ -1,10 +1,10 @@
 <template>
-  <form class="space-y-4" @submit.prevent="handleSubmit">
-    <VideoPanel
-      video-number="2"
-      text="لطفاً شماره موبایل خود را وارد کنید تا بتوانیم ادامه دهیم."
-    >
-      <label class="form-control w-full mt-2">
+  <VideoPanel
+    video-number="2"
+    text="لطفاً شماره موبایل خود را وارد کنید تا بتوانیم ادامه دهیم."
+  >
+    <form class="space-y-3" @submit.prevent="handleSubmit">
+      <label class="form-control w-full">
         <div class="label">
           <span class="label-text">شماره موبایل</span>
           <span class="label-text-alt text-error" v-if="localMobile && !isValid">
@@ -24,13 +24,13 @@
           فقط شماره ۱۱ رقمی با شروع 09 پذیرفته می‌شود.
         </p>
       </label>
-    </VideoPanel>
-    <div class="flex justify-end">
-      <button class="btn btn-primary" type="submit" :disabled="!isValid">
-        ارسال
-      </button>
-    </div>
-  </form>
+      <div class="flex justify-end">
+        <button class="btn btn-primary" type="submit" :disabled="!isValid">
+          ارسال
+        </button>
+      </div>
+    </form>
+  </VideoPanel>
 </template>
 
 <script setup>

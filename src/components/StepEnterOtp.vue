@@ -1,10 +1,10 @@
 <template>
-  <form class="space-y-4" @submit.prevent="handleSubmit">
-    <VideoPanel
-      video-number="4"
-      text="کد پنج رقمی ارسال شد، لطفاً وارد کنید."
-    >
-      <div class="space-y-2 mt-3">
+  <VideoPanel
+    video-number="4"
+    text="کد پنج رقمی ارسال شد، لطفاً وارد کنید."
+  >
+    <form class="space-y-3" @submit.prevent="handleSubmit">
+      <div class="space-y-2">
         <div class="badge badge-outline">ارسال به: {{ mobile }}</div>
         <div class="flex items-center gap-2 text-sm text-base-content/70">
           <span v-if="sending">در حال ارسال کد...</span>
@@ -21,13 +21,13 @@
         />
         <p class="text-xs text-base-content/70">کد باید ۵ رقم باشد.</p>
       </div>
-    </VideoPanel>
-    <div class="flex justify-end">
-      <button class="btn btn-primary" type="submit" :disabled="!isValid || sending">
-        تأیید کد
-      </button>
-    </div>
-  </form>
+      <div class="flex justify-end">
+        <button class="btn btn-primary" type="submit" :disabled="!isValid || sending">
+          تأیید کد
+        </button>
+      </div>
+    </form>
+  </VideoPanel>
 </template>
 
 <script setup>
