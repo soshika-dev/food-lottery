@@ -54,6 +54,14 @@ export function startStepTimer() {
 export function triggerError(type) {
   flowState.errorType = type
   clearTimer()
+
+  if (type === ErrorTypes.TIMEOUT) {
+    setTimeout(() => {
+      if (flowState.errorType === ErrorTypes.TIMEOUT) {
+        resolveError()
+      }
+    }, 3000)
+  }
 }
 
 export function resolveError() {
