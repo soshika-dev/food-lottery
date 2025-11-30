@@ -1,22 +1,29 @@
 <template>
-  <div class="card bg-base-100 border border-base-200 shadow-md">
-    <div class="card-body p-4 space-y-3">
-      <div class="rounded-xl bg-base-200 overflow-hidden border border-base-300">
-        <video
-          ref="videoEl"
-          class="w-full aspect-video bg-black"
-          :src="videoSrc"
-          :aria-label="`ویدئوی شماره ${videoNumber}`"
-          autoplay
-          muted
-          controls
-          playsinline
-        >
-          مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
-        </video>
+  <div class="relative min-h-screen text-base-content">
+    <video
+      ref="videoEl"
+      class="fixed inset-0 h-full w-full object-cover"
+      :src="videoSrc"
+      :aria-label="`ویدئوی شماره ${videoNumber}`"
+      autoplay
+      muted
+      playsinline
+      loop
+    >
+      مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+    </video>
+
+    <div class="pointer-events-none fixed inset-0 bg-gradient-to-t from-base-100/80 via-base-100/30 to-transparent" />
+
+    <div class="relative z-10 flex min-h-screen items-end justify-center">
+      <div class="w-full max-w-4xl px-4 pb-10 md:pb-14">
+        <div class="space-y-3 rounded-3xl bg-base-100/80 p-4 shadow-2xl backdrop-blur-lg border border-base-200">
+          <p class="text-lg font-semibold leading-relaxed text-base-content drop-shadow-sm md:text-xl">
+            {{ text }}
+          </p>
+          <slot />
+        </div>
       </div>
-      <p class="leading-relaxed text-base-content/80">{{ text }}</p>
-      <slot />
     </div>
   </div>
 </template>
