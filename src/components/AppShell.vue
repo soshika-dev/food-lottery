@@ -1,6 +1,6 @@
 <template>
   <div class="relative min-h-screen text-base-content">
-    <div class="fixed inset-x-0 top-0 z-20">
+    <div v-if="showHeader" class="fixed inset-x-0 top-0 z-20">
       <div class="mx-auto max-w-5xl px-4 pt-4">
         <div
           class="space-y-3 rounded-2xl border border-base-200 bg-base-100/70 p-4 shadow-xl backdrop-blur-md md:p-6"
@@ -48,6 +48,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const showHeader = false
 
 const progressValue = computed(
   () => (props.currentStepNumber / props.totalSteps) * 100
