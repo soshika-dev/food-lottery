@@ -7,7 +7,6 @@
       :aria-label="`ویدئوی شماره ${videoNumber}`"
       autoplay
       playsinline
-      loop
       :muted="isMuted"
     >
       مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
