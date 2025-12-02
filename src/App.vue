@@ -2,8 +2,6 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import AppShell from './components/AppShell.vue'
 import ErrorOverlay from './components/ErrorOverlay.vue'
-import StepConfirmMobile from './components/StepConfirmMobile.vue'
-import StepConfirmOtp from './components/StepConfirmOtp.vue'
 import StepEnterOtp from './components/StepEnterOtp.vue'
 import StepGetMobile from './components/StepGetMobile.vue'
 import StepSuccess from './components/StepSuccess.vue'
@@ -23,9 +21,7 @@ import {
 const stepsOrder = [
   Steps.WELCOME,
   Steps.GET_MOBILE,
-  Steps.CONFIRM_MOBILE,
   Steps.ENTER_OTP,
-  Steps.CONFIRM_OTP,
   Steps.SUCCESS,
 ]
 
@@ -35,9 +31,7 @@ const verifyingOtp = ref(false)
 const currentComponent = computed(() => ({
   [Steps.WELCOME]: StepWelcome,
   [Steps.GET_MOBILE]: StepGetMobile,
-  [Steps.CONFIRM_MOBILE]: StepConfirmMobile,
   [Steps.ENTER_OTP]: StepEnterOtp,
-  [Steps.CONFIRM_OTP]: StepConfirmOtp,
   [Steps.SUCCESS]: StepSuccess,
 }[flowState.currentStep]))
 
@@ -56,28 +50,15 @@ const componentBindings = computed(() => {
         onSubmit: handleMobileSubmit,
         onInvalid: handleInvalidInput,
       }
-    case Steps.CONFIRM_MOBILE:
-      return {
-        mobile: flowState.mobile,
-        onConfirm: () => handleConfirmMobile(true),
-        onEdit: () => handleConfirmMobile(false),
-      }
     case Steps.ENTER_OTP:
       return {
         mobile: flowState.mobile,
         modelValue: flowState.otpInput,
         sending: sendingOtp.value,
+        verifying: verifyingOtp.value,
         'onUpdate:modelValue': (value) => (flowState.otpInput = value),
         onSubmit: handleOtpEntrySubmit,
         onInvalid: handleInvalidInput,
-      }
-    case Steps.CONFIRM_OTP:
-      return {
-        mobile: flowState.mobile,
-        otp: flowState.otpInput,
-        processing: verifyingOtp.value,
-        onRetry: () => handleOtpDecision(false),
-        onConfirm: () => handleOtpDecision(true),
       }
     case Steps.SUCCESS:
       return {
@@ -119,27 +100,11 @@ function handleWelcomeNext() {
 }
 
 function handleMobileSubmit() {
-  setStep(Steps.CONFIRM_MOBILE)
-}
-
-function handleConfirmMobile(confirm) {
-  if (confirm) {
-    setStep(Steps.ENTER_OTP)
-  } else {
-    setStep(Steps.GET_MOBILE)
-  }
+  setStep(Steps.ENTER_OTP)
 }
 
 function handleOtpEntrySubmit() {
-  setStep(Steps.CONFIRM_OTP)
-}
-
-function handleOtpDecision(confirm) {
-  if (!confirm) {
-    setStep(Steps.ENTER_OTP)
-    return
-  }
-
+  if (verifyingOtp.value) return
   verifyCurrentOtp()
 }
 
