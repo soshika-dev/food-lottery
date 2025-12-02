@@ -22,8 +22,13 @@
         <p class="text-xs text-base-content/70">کد باید ۵ رقم باشد.</p>
       </div>
       <div class="flex justify-end">
-        <button class="btn btn-primary" type="submit" :disabled="!isValid || sending">
-          تأیید کد
+        <button
+          class="btn btn-primary"
+          type="submit"
+          :disabled="!isValid || sending || verifying"
+        >
+          <span v-if="verifying" class="loading loading-spinner"></span>
+          <span v-else>تأیید کد</span>
         </button>
       </div>
     </form>
@@ -44,6 +49,10 @@ const props = defineProps({
     default: '',
   },
   sending: {
+    type: Boolean,
+    default: false,
+  },
+  verifying: {
     type: Boolean,
     default: false,
   },

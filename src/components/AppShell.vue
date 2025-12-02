@@ -11,7 +11,7 @@
               <h1 class="text-2xl font-bold">پیش ثبت‌نام غذای متبرک مهمانسرا</h1>
             </div>
             <div class="flex items-center gap-2">
-              <span class="badge badge-primary badge-outline">۶ مرحله</span>
+              <span class="badge badge-primary badge-outline">۴ مرحله</span>
               <span class="badge badge-success">جریان راهنما</span>
             </div>
           </header>

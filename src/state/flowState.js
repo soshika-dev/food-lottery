@@ -3,9 +3,7 @@ import { reactive } from 'vue'
 export const Steps = {
   WELCOME: 'WELCOME',
   GET_MOBILE: 'GET_MOBILE',
-  CONFIRM_MOBILE: 'CONFIRM_MOBILE',
   ENTER_OTP: 'ENTER_OTP',
-  CONFIRM_OTP: 'CONFIRM_OTP',
   SUCCESS: 'SUCCESS',
 }
 
