@@ -3,7 +3,7 @@
     video-number="2"
     text="لطفاً شماره موبایل خود را وارد کنید تا بتوانیم ادامه دهیم."
   >
-    <form class="space-y-3" @submit.prevent="handleSubmit">
+    <form class="space-y-2.5" @submit.prevent="handleSubmit">
       <label class="form-control w-full">
         <div class="label">
           <span class="label-text">شماره موبایل</span>
@@ -24,7 +24,7 @@
           فقط شماره ۱۱ رقمی با شروع 09 پذیرفته می‌شود.
         </p>
       </label>
-      <div class="flex justify-end">
+      <div class="flex justify-end pt-1">
         <button class="btn btn-primary" type="submit" :disabled="!isValid">
           ارسال
         </button>

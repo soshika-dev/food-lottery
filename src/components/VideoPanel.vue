@@ -14,9 +14,9 @@
 
     <div class="pointer-events-none fixed inset-0 bg-gradient-to-t from-base-100/80 via-base-100/30 to-transparent" />
 
-    <div class="relative z-10 flex min-h-screen items-end justify-center">
-      <div class="w-full max-w-3xl lg:max-w-2xl px-4 pb-10 md:pb-12">
-        <div class="space-y-2 rounded-3xl bg-base-100/80 p-3 shadow-2xl backdrop-blur-lg border border-base-200">
+    <div class="relative z-10 flex min-h-[60vh] items-end justify-center py-6 md:py-8">
+      <div class="w-full max-w-3xl lg:max-w-2xl px-4 pb-6 md:pb-8">
+        <div class="space-y-1.5 rounded-3xl bg-base-100/80 p-3 md:p-4 shadow-2xl backdrop-blur-lg border border-base-200">
           <p class="text-base font-semibold leading-relaxed text-base-content drop-shadow-sm md:text-lg">
             {{ text }}
           </p>
