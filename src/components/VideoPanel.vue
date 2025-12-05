@@ -7,7 +7,6 @@
       :aria-label="`ویدئوی شماره ${videoNumber}`"
       autoplay
       playsinline
-      :muted="isMuted"
     >
       مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
     </video>
@@ -21,18 +20,6 @@
             {{ text }}
           </p>
           <slot />
-        </div>
-        <div class="mt-3 flex justify-end">
-          <button
-            type="button"
-            class="btn btn-sm gap-2 rounded-full bg-base-100/90 text-base-content shadow-lg backdrop-blur"
-            :aria-pressed="!isMuted"
-            :title="isMuted ? 'فعال کردن صدا' : 'قطع صدا'"
-            @click="toggleMute"
-          >
-            <span aria-hidden="true">{{ isMuted ? '🔇' : '🔊' }}</span>
-            <span class="font-medium">{{ isMuted ? 'فعال کردن صدا' : 'قطع صدا' }}</span>
-          </button>
         </div>
       </div>
     </div>
@@ -56,25 +43,12 @@ const props = defineProps({
 const videoSrc = computed(() => `/videos/${props.videoNumber}.mp4`)
 
 const videoEl = ref(null)
-const isMuted = ref(true)
 
 const playVideo = () => {
   const element = videoEl.value
   if (!element) return
 
   element.currentTime = 0
-  element.muted = isMuted.value
-  element.play().catch(() => {})
-}
-
-const toggleMute = () => {
-  const element = videoEl.value
-  if (!element) return
-
-  const nextMuted = !isMuted.value
-  isMuted.value = nextMuted
-  element.muted = nextMuted
-
   element.play().catch(() => {})
 }
 
