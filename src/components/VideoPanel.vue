@@ -15,7 +15,13 @@
 
     <div class="fixed inset-0 z-10 flex items-end justify-center pb-6 md:pb-8">
       <div class="w-full max-w-xl md:max-w-2xl px-3 md:px-4">
-        <div class="space-y-1 rounded-2xl bg-base-100/80 p-3 shadow-2xl backdrop-blur-lg border border-base-200">
+        <div
+          class="space-y-1 rounded-2xl"
+          :class="hasFrame
+            ? 'bg-base-100/80 p-3 shadow-2xl backdrop-blur-lg border border-base-200'
+            : 'p-0 shadow-none backdrop-blur-0 border-none'
+          "
+        >
           <p
             v-if="text"
             class="text-sm font-semibold leading-relaxed text-base-content drop-shadow-sm md:text-base"
@@ -40,6 +46,10 @@ const props = defineProps({
   text: {
     type: String,
     default: '',
+  },
+  hasFrame: {
+    type: Boolean,
+    default: true,
   },
 })
 
