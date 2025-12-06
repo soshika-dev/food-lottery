@@ -1,6 +1,7 @@
 <template>
   <VideoPanel
     video-number="1"
+    :has-frame="false"
   >
     <div class="flex justify-center">
       <button class="btn btn-primary" @click="$emit('next')">
