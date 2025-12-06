@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 
 export const Steps = {
+  MAIN: 'MAIN',
   WELCOME: 'WELCOME',
   GET_MOBILE: 'GET_MOBILE',
   ENTER_OTP: 'ENTER_OTP',
@@ -15,7 +16,7 @@ export const ErrorTypes = {
 }
 
 export const flowState = reactive({
-  currentStep: Steps.WELCOME,
+  currentStep: Steps.MAIN,
   mobile: '',
   otpInput: '',
   otpServer: '',
@@ -35,7 +36,7 @@ function clearTimer() {
 export function startStepTimer() {
   clearTimer()
 
-  if (flowState.currentStep === Steps.SUCCESS) {
+  if (flowState.currentStep === Steps.SUCCESS || flowState.currentStep === Steps.MAIN) {
     return
   }
 
@@ -85,7 +86,7 @@ export function resolveError() {
 export function setStep(step) {
   flowState.currentStep = step
 
-  if (step === Steps.SUCCESS) {
+  if (step === Steps.SUCCESS || step === Steps.MAIN) {
     clearTimer()
   } else {
     startStepTimer()
@@ -96,5 +97,5 @@ export function resetFlow() {
   flowState.mobile = ''
   flowState.otpInput = ''
   flowState.otpServer = ''
-  setStep(Steps.WELCOME)
+  setStep(Steps.MAIN)
 }
