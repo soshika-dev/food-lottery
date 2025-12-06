@@ -6,6 +6,14 @@
       <div
         class="w-full max-w-xl space-y-6 rounded-3xl border border-base-200 bg-base-100/90 p-6 text-center shadow-2xl backdrop-blur-lg"
       >
+        <div class="flex justify-center">
+          <img
+            :src="companyLogo"
+            alt="Astan Quds Razavi logo"
+            class="h-24 w-24 rounded-2xl bg-base-200/70 p-3 shadow-inner"
+          />
+        </div>
+
         <div class="space-y-2">
           <p class="text-sm text-base-content/80">جریان راهنمای پیش‌ثبت‌نام</p>
           <h1 class="text-2xl font-bold text-base-content">شروع فرآیند</h1>
@@ -26,5 +34,7 @@
 </template>
 
 <script setup>
+import companyLogo from '../assets/company-logo.svg'
+
 defineEmits(['start'])
 </script>
