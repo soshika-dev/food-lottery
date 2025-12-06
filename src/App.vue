@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import AppShell from './components/AppShell.vue'
 import ErrorOverlay from './components/ErrorOverlay.vue'
+import StepMain from './components/StepMain.vue'
 import StepEnterOtp from './components/StepEnterOtp.vue'
 import StepGetMobile from './components/StepGetMobile.vue'
 import StepSuccess from './components/StepSuccess.vue'
@@ -18,29 +19,28 @@ import {
   triggerError,
 } from './state/flowState'
 
-const stepsOrder = [
-  Steps.WELCOME,
-  Steps.GET_MOBILE,
-  Steps.ENTER_OTP,
-  Steps.SUCCESS,
-]
+const stepsOrder = [Steps.WELCOME, Steps.GET_MOBILE, Steps.ENTER_OTP, Steps.SUCCESS]
 
 const sendingOtp = ref(false)
 const verifyingOtp = ref(false)
 
 const currentComponent = computed(() => ({
+  [Steps.MAIN]: StepMain,
   [Steps.WELCOME]: StepWelcome,
   [Steps.GET_MOBILE]: StepGetMobile,
   [Steps.ENTER_OTP]: StepEnterOtp,
   [Steps.SUCCESS]: StepSuccess,
 }[flowState.currentStep]))
 
-const currentStepNumber = computed(
-  () => stepsOrder.indexOf(flowState.currentStep) + 1
-)
+const currentStepNumber = computed(() => {
+  const stepIndex = stepsOrder.indexOf(flowState.currentStep)
+  return stepIndex === -1 ? 0 : stepIndex + 1
+})
 
 const componentBindings = computed(() => {
   switch (flowState.currentStep) {
+    case Steps.MAIN:
+      return { onStart: handleMainStart }
     case Steps.WELCOME:
       return { onNext: handleWelcomeNext }
     case Steps.GET_MOBILE:
@@ -97,6 +97,10 @@ async function initiateOtpSend() {
 
 function handleWelcomeNext() {
   setStep(Steps.GET_MOBILE)
+}
+
+function handleMainStart() {
+  setStep(Steps.WELCOME)
 }
 
 function handleMobileSubmit() {
