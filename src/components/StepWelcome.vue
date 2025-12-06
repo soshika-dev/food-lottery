@@ -2,7 +2,7 @@
   <VideoPanel
     video-number="1"
   >
-    <div class="flex justify-end">
+    <div class="flex justify-center">
       <button class="btn btn-primary" @click="$emit('next')">
         ادامه
       </button>
