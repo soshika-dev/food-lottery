@@ -11,17 +11,19 @@ export async function sendOtp(mobile) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        mobile,
+        mobileNumber: mobile,
         otpCode,
       }),
     }
   )
 
+  const payload = await response.json().catch(() => null)
+
   if (!response.ok) {
-    throw new Error('system-error')
+    throw new Error(payload?.message || 'system-error')
   }
 
-  return otpCode
+  return payload?.otpCode ? String(payload.otpCode) : otpCode
 }
 
 export async function verifyOtp(mobile, code, otpServer) {
